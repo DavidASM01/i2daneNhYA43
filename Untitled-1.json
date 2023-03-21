@@ -1,1175 +1,579 @@
 {
-    "openapi": "3.0.0",
-    "paths": {
-        "/api/v1/pedidos/fideliza": {
-            "post": {
-                "operationId": "PedidosFidelizaController_criarPedidoFideliza",
-                "parameters": [
-                    {
-                        "name": "X-API-Key",
-                        "in": "header",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CriarPedidoFidelizaDto"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Pedido criado com sucesso"
-                    },
-                    "400": {
-                        "description": "Ocorreu um erro de validação com os dados fornecidos"
-                    },
-                    "401": {
-                        "description": "Api Key informada não é valida"
-                    }
-                },
-                "tags": [
-                    "Criar pedido Fideliza / Scania"
-                ]
+  "swagger": "2.0",
+  "info": {
+    "contact": {},
+    "description": "Farmacia-popular-scania",
+    "title": "ApiPedido",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/v1/pedidos/fideliza": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-API-Key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CriarPedidoFidelizaDto"
             }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Pedido criado com sucesso"
+          },
+          "400": {
+            "description": "Ocorreu um erro de validação com os dados fornecidos"
+          },
+          "401": {
+            "description": "Api Key informada não é valida"
+          }
         },
-        "/api/v1/pedidos/popular": {
-            "post": {
-                "operationId": "PedidosPopularController_criarPedidoPopular",
-                "parameters": [
-                    {
-                        "name": "X-API-Key",
-                        "in": "header",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CriarPedidoPopularDto"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Pedido criado com sucesso"
-                    },
-                    "400": {
-                        "description": "Ocorreu um erro de validação com os dados fornecidos"
-                    },
-                    "401": {
-                        "description": "Api Key informada não é valida"
-                    }
-                },
-                "tags": [
-                    "Criar pedido Popular"
-                ]
+        "tags": [
+          "Criar pedido Fideliza / Scania"
+        ],
+        "operationId": "PedidosFidelizaController_criarPedidoFideliza"
+      }
+    },
+    "/api/v1/pedidos/popular": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-API-Key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CriarPedidoPopularDto"
             }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Pedido criado com sucesso"
+          },
+          "400": {
+            "description": "Ocorreu um erro de validação com os dados fornecidos"
+          },
+          "401": {
+            "description": "Api Key informada não é valida"
+          }
         },
-        "/health": {
-            "get": {
-                "operationId": "HealthController_check",
-                "summary": "",
-                "description": "Verifica a saúde da aplicação.",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "The Health Check is successful",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "status": {
-                                            "type": "string",
-                                            "example": "ok"
-                                        },
-                                        "info": {
-                                            "type": "object",
-                                            "example": {
-                                                "database": {
-                                                    "status": "up"
-                                                }
-                                            },
-                                            "additionalProperties": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "status": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "additionalProperties": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "nullable": true
-                                        },
-                                        "error": {
-                                            "type": "object",
-                                            "example": {},
-                                            "additionalProperties": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "status": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "additionalProperties": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "nullable": true
-                                        },
-                                        "details": {
-                                            "type": "object",
-                                            "example": {
-                                                "database": {
-                                                    "status": "up"
-                                                }
-                                            },
-                                            "additionalProperties": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "status": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "additionalProperties": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "503": {
-                        "description": "The Health Check is not successful",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "status": {
-                                            "type": "string",
-                                            "example": "error"
-                                        },
-                                        "info": {
-                                            "type": "object",
-                                            "example": {
-                                                "database": {
-                                                    "status": "up"
-                                                }
-                                            },
-                                            "additionalProperties": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "status": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "additionalProperties": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "nullable": true
-                                        },
-                                        "error": {
-                                            "type": "object",
-                                            "example": {
-                                                "redis": {
-                                                    "status": "down",
-                                                    "message": "Could not connect"
-                                                }
-                                            },
-                                            "additionalProperties": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "status": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "additionalProperties": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "nullable": true
-                                        },
-                                        "details": {
-                                            "type": "object",
-                                            "example": {
-                                                "database": {
-                                                    "status": "up"
-                                                },
-                                                "redis": {
-                                                    "status": "down",
-                                                    "message": "Could not connect"
-                                                }
-                                            },
-                                            "additionalProperties": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "status": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "additionalProperties": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "tags": [
-                    "health"
-                ]
-            }
-        }
+        "tags": [
+          "Criar pedido Popular"
+        ],
+        "operationId": "PedidosPopularController_criarPedidoPopular"
+      }
     },
-    "info": {
-        "title": "ApiPedido",
-        "description": "Farmacia-popular-scania",
-        "version": "1.0",
-        "contact": {}
-    },
-    "tags": [],
-    "servers": [],
-    "components": {
-        "schemas": {
-            "DadosEntrega": {
-                "type": "object",
-                "properties": {
-                    "cartao": {
+    "/health": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The Health Check is successful",
+            "schema": {
+              "properties": {
+                "info": {
+                  "additionalProperties": {
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "properties": {
+                      "status": {
                         "type": "string"
+                      }
                     },
-                    "cnpj_pbm": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "database": {
+                      "status": "up"
+                    }
+                  },
+                  "type": "object",
+                  "x-nullable": true
+                },
+                "details": {
+                  "additionalProperties": {
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "properties": {
+                      "status": {
                         "type": "string"
+                      }
                     },
-                    "codigo_entrega": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "database": {
+                      "status": "up"
+                    }
+                  },
+                  "type": "object"
+                },
+                "error": {
+                  "additionalProperties": {
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "properties": {
+                      "status": {
                         "type": "string"
+                      }
                     },
-                    "cpf": {
-                        "type": "string"
-                    },
-                    "empresa": {
-                        "type": "string"
-                    },
-                    "nome_cliente": {
-                        "type": "string"
-                    },
-                    "valor_entrega": {
-                        "type": "number"
-                    }
+                    "type": "object"
+                  },
+                  "example": {},
+                  "type": "object",
+                  "x-nullable": true
                 },
-                "required": [
-                    "cartao",
-                    "cnpj_pbm",
-                    "codigo_entrega",
-                    "cpf",
-                    "empresa",
-                    "nome_cliente",
-                    "valor_entrega"
-                ]
-            },
-            "ItemForma": {
-                "type": "object",
-                "properties": {
-                    "modalidade": {
-                        "type": "string"
-                    },
-                    "subtipo": {
-                        "type": "string"
-                    },
-                    "valor_pago": {
-                        "type": "number"
-                    }
-                },
-                "required": [
-                    "modalidade",
-                    "subtipo",
-                    "valor_pago"
-                ]
-            },
-            "FormasPagamento": {
-                "type": "object",
-                "properties": {
-                    "item_forma": {
-                        "description": "Array de formas de formas de pagamento.",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/ItemForma"
-                        }
-                    }
-                },
-                "required": [
-                    "item_forma"
-                ]
-            },
-            "ItemProduto": {
-                "type": "object",
-                "properties": {
-                    "codigo_interno": {
-                        "type": "string"
-                    },
-                    "quantidade": {
-                        "type": "number"
-                    },
-                    "valor_total_bruto": {
-                        "type": "number"
-                    },
-                    "valor_total_liquido": {
-                        "type": "number"
-                    }
-                },
-                "required": [
-                    "codigo_interno",
-                    "quantidade",
-                    "valor_total_bruto",
-                    "valor_total_liquido"
-                ]
-            },
-            "Produtos": {
-                "type": "object",
-                "properties": {
-                    "item_produto": {
-                        "description": "Array de formas de produtos.",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/ItemProduto"
-                        }
-                    }
-                },
-                "required": [
-                    "item_produto"
-                ]
-            },
-            "EntregaXml": {
-                "type": "object",
-                "properties": {
-                    "cupom_fiscal": {
-                        "type": "string"
-                    },
-                    "dados_entrega": {
-                        "$ref": "#/components/schemas/DadosEntrega"
-                    },
-                    "formas_pagamento": {
-                        "$ref": "#/components/schemas/FormasPagamento"
-                    },
-                    "produtos": {
-                        "$ref": "#/components/schemas/Produtos"
-                    }
-                },
-                "required": [
-                    "cupom_fiscal",
-                    "dados_entrega",
-                    "formas_pagamento",
-                    "produtos"
-                ]
-            },
-            "Order": {
-                "type": "object",
-                "properties": {
-                    "entrega_xml": {
-                        "$ref": "#/components/schemas/EntregaXml"
-                    }
-                },
-                "required": [
-                    "entrega_xml"
-                ]
-            },
-            "CriarPedidoFidelizaDto": {
-                "type": "object",
-                "properties": {
-                    "cnpj_filial": {
-                        "type": "string"
-                    },
-                    "codigo_filial": {
-                        "type": "number",
-                        "example": 2015
-                    },
-                    "cupom": {
-                        "$ref": "#/components/schemas/Order"
-                    }
-                },
-                "required": [
-                    "cnpj_filial",
-                    "codigo_filial",
-                    "cupom"
-                ]
-            },
-            "Produto": {
-                "type": "object",
-                "properties": {
-                    "codigo_produto": {
-                        "type": "number",
-                        "example": 7898148291267
-                    },
-                    "codigo_interno": {
-                        "type": "number",
-                        "example": 521434
-                    },
-                    "descricao": {
-                        "type": "string",
-                        "example": "METFORMINA 500MG 30 COMPRIMIDOS REVESTID"
-                    },
-                    "numero_dias": {
-                        "type": "number",
-                        "example": 0
-                    },
-                    "pvendaemb": {
-                        "type": "number",
-                        "example": 3.9
-                    },
-                    "qtd_autorizada": {
-                        "type": "number",
-                        "example": 120
-                    },
-                    "qu_diaria": {
-                        "type": "number",
-                        "example": 4
-                    },
-                    "qu_embalagem": {
-                        "type": "number",
-                        "example": 30
-                    },
-                    "status": {
-                        "type": "string",
-                        "example": "00SM"
-                    },
-                    "total_cliente": {
-                        "type": "number",
-                        "example": 0
-                    },
-                    "total_ms": {
-                        "type": "number",
-                        "example": 15.6
-                    },
-                    "un": {
-                        "type": "string",
-                        "example": "UN"
-                    }
-                },
-                "required": [
-                    "codigo_produto",
-                    "codigo_interno",
-                    "descricao",
-                    "numero_dias",
-                    "pvendaemb",
-                    "qtd_autorizada",
-                    "qu_diaria",
-                    "qu_embalagem",
-                    "status",
-                    "total_cliente",
-                    "total_ms",
-                    "un"
-                ]
-            },
-            "AutorizacaoPopular": {
-                "type": "object",
-                "properties": {
-                    "cpf": {
-                        "type": "string",
-                        "example": "00774966718"
-                    },
-                    "crm": {
-                        "type": "string",
-                        "example": "12345"
-                    },
-                    "data_receita": {
-                        "type": "string",
-                        "example": "44925"
-                    },
-                    "digitalizou": {
-                        "type": "number",
-                        "example": 1
-                    },
-                    "endereco": {
-                        "type": "string",
-                        "example": "R ERNESTINA VIEIRA SIMOES, 168 CASA, OLARIA, GUARAPARI, ES"
-                    },
-                    "nItems": {
-                        "type": "number",
-                        "example": 1
-                    },
-                    "nome": {
-                        "type": "string",
-                        "example": "MARIA HELENA PENA DA FONSECA"
-                    },
-                    "nomeCrm": {
-                        "type": "string",
-                        "example": "THOMAZ RINCO"
-                    },
-                    "numero_autorizacao": {
-                        "type": "number",
-                        "example": 998469399872086
-                    },
-                    "produtos": {
-                        "description": "Array de produtos.",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Produto"
-                        }
-                    },
-                    "qtd_medidcamentos": {
-                        "type": "number",
-                        "example": 1
-                    },
-                    "tempo_autorizacao": {
-                        "type": "string",
-                        "example": "44925,4280371065"
-                    },
-                    "uf_crm": {
-                        "type": "string",
-                        "example": "SP"
-                    },
-                    "vendedor": {
-                        "type": "string",
-                        "example": "30770356850"
-                    }
-                },
-                "required": [
-                    "cpf",
-                    "crm",
-                    "data_receita",
-                    "digitalizou",
-                    "endereco",
-                    "nItems",
-                    "nome",
-                    "nomeCrm",
-                    "numero_autorizacao",
-                    "produtos",
-                    "qtd_medidcamentos",
-                    "tempo_autorizacao",
-                    "uf_crm",
-                    "vendedor"
-                ]
-            },
-            "CriarPedidoPopularDto": {
-                "type": "object",
-                "properties": {
-                    "cnpj_filial": {
-                        "type": "string",
-                        "example": "61412110052201"
-                    },
-                    "codigo_filial": {
-                        "type": "number",
-                        "example": 2015
-                    },
-                    "autorizacao": {
-                        "$ref": "#/components/schemas/AutorizacaoPopular"
-                    }
-                },
-                "required": [
-                    "cnpj_filial",
-                    "codigo_filial",
-                    "autorizacao"
-                ]
+                "status": {
+                  "example": "ok",
+                  "type": "string"
+                }
+              },
+              "type": "object"
             }
-        }
+          },
+          "503": {
+            "description": "The Health Check is not successful",
+            "schema": {
+              "properties": {
+                "info": {
+                  "additionalProperties": {
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "properties": {
+                      "status": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "example": {
+                    "database": {
+                      "status": "up"
+                    }
+                  },
+                  "type": "object",
+                  "x-nullable": true
+                },
+                "details": {
+                  "additionalProperties": {
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "properties": {
+                      "status": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "example": {
+                    "database": {
+                      "status": "up"
+                    },
+                    "redis": {
+                      "message": "Could not connect",
+                      "status": "down"
+                    }
+                  },
+                  "type": "object"
+                },
+                "error": {
+                  "additionalProperties": {
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "properties": {
+                      "status": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "example": {
+                    "redis": {
+                      "message": "Could not connect",
+                      "status": "down"
+                    }
+                  },
+                  "type": "object",
+                  "x-nullable": true
+                },
+                "status": {
+                  "example": "error",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "health"
+        ],
+        "description": "Verifica a saúde da aplicação.",
+        "operationId": "HealthController_check",
+        "summary": ""
+      }
     }
-}{
-    "openapi": "3.0.0",
-    "paths": {
-        "/api/v1/pedidos/fideliza": {
-            "post": {
-                "operationId": "PedidosFidelizaController_criarPedidoFideliza",
-                "parameters": [
-                    {
-                        "name": "X-API-Key",
-                        "in": "header",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CriarPedidoFidelizaDto"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Pedido criado com sucesso"
-                    },
-                    "400": {
-                        "description": "Ocorreu um erro de validação com os dados fornecidos"
-                    },
-                    "401": {
-                        "description": "Api Key informada não é valida"
-                    }
-                },
-                "tags": [
-                    "Criar pedido Fideliza / Scania"
-                ]
-            }
+  },
+  "definitions": {
+    "AutorizacaoPopular": {
+      "properties": {
+        "cpf": {
+          "example": "00774966718",
+          "type": "string"
         },
-        "/api/v1/pedidos/popular": {
-            "post": {
-                "operationId": "PedidosPopularController_criarPedidoPopular",
-                "parameters": [
-                    {
-                        "name": "X-API-Key",
-                        "in": "header",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CriarPedidoPopularDto"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Pedido criado com sucesso"
-                    },
-                    "400": {
-                        "description": "Ocorreu um erro de validação com os dados fornecidos"
-                    },
-                    "401": {
-                        "description": "Api Key informada não é valida"
-                    }
-                },
-                "tags": [
-                    "Criar pedido Popular"
-                ]
-            }
+        "crm": {
+          "example": "12345",
+          "type": "string"
         },
-        "/health": {
-            "get": {
-                "operationId": "HealthController_check",
-                "summary": "",
-                "description": "Verifica a saúde da aplicação.",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "The Health Check is successful",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "status": {
-                                            "type": "string",
-                                            "example": "ok"
-                                        },
-                                        "info": {
-                                            "type": "object",
-                                            "example": {
-                                                "database": {
-                                                    "status": "up"
-                                                }
-                                            },
-                                            "additionalProperties": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "status": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "additionalProperties": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "nullable": true
-                                        },
-                                        "error": {
-                                            "type": "object",
-                                            "example": {},
-                                            "additionalProperties": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "status": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "additionalProperties": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "nullable": true
-                                        },
-                                        "details": {
-                                            "type": "object",
-                                            "example": {
-                                                "database": {
-                                                    "status": "up"
-                                                }
-                                            },
-                                            "additionalProperties": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "status": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "additionalProperties": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "503": {
-                        "description": "The Health Check is not successful",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "status": {
-                                            "type": "string",
-                                            "example": "error"
-                                        },
-                                        "info": {
-                                            "type": "object",
-                                            "example": {
-                                                "database": {
-                                                    "status": "up"
-                                                }
-                                            },
-                                            "additionalProperties": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "status": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "additionalProperties": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "nullable": true
-                                        },
-                                        "error": {
-                                            "type": "object",
-                                            "example": {
-                                                "redis": {
-                                                    "status": "down",
-                                                    "message": "Could not connect"
-                                                }
-                                            },
-                                            "additionalProperties": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "status": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "additionalProperties": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "nullable": true
-                                        },
-                                        "details": {
-                                            "type": "object",
-                                            "example": {
-                                                "database": {
-                                                    "status": "up"
-                                                },
-                                                "redis": {
-                                                    "status": "down",
-                                                    "message": "Could not connect"
-                                                }
-                                            },
-                                            "additionalProperties": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "status": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "additionalProperties": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "tags": [
-                    "health"
-                ]
-            }
+        "data_receita": {
+          "example": "44925",
+          "type": "string"
+        },
+        "digitalizou": {
+          "example": 1,
+          "type": "number"
+        },
+        "endereco": {
+          "example": "R ERNESTINA VIEIRA SIMOES, 168 CASA, OLARIA, GUARAPARI, ES",
+          "type": "string"
+        },
+        "nItems": {
+          "example": 1,
+          "type": "number"
+        },
+        "nome": {
+          "example": "MARIA HELENA PENA DA FONSECA",
+          "type": "string"
+        },
+        "nomeCrm": {
+          "example": "THOMAZ RINCO",
+          "type": "string"
+        },
+        "numero_autorizacao": {
+          "example": 998469399872086,
+          "type": "number"
+        },
+        "produtos": {
+          "description": "Array de produtos.",
+          "items": {
+            "$ref": "#/definitions/Produto"
+          },
+          "type": "array"
+        },
+        "qtd_medidcamentos": {
+          "example": 1,
+          "type": "number"
+        },
+        "tempo_autorizacao": {
+          "example": "44925,4280371065",
+          "type": "string"
+        },
+        "uf_crm": {
+          "example": "SP",
+          "type": "string"
+        },
+        "vendedor": {
+          "example": "30770356850",
+          "type": "string"
         }
+      },
+      "required": [
+        "cpf",
+        "crm",
+        "data_receita",
+        "digitalizou",
+        "endereco",
+        "nItems",
+        "nome",
+        "nomeCrm",
+        "numero_autorizacao",
+        "produtos",
+        "qtd_medidcamentos",
+        "tempo_autorizacao",
+        "uf_crm",
+        "vendedor"
+      ],
+      "type": "object"
     },
-    "info": {
-        "title": "ApiPedido",
-        "description": "Farmacia-popular-scania",
-        "version": "1.0",
-        "contact": {}
-    },
-    "tags": [],
-    "servers": [],
-    "components": {
-        "schemas": {
-            "DadosEntrega": {
-                "type": "object",
-                "properties": {
-                    "cartao": {
-                        "type": "string"
-                    },
-                    "cnpj_pbm": {
-                        "type": "string"
-                    },
-                    "codigo_entrega": {
-                        "type": "string"
-                    },
-                    "cpf": {
-                        "type": "string"
-                    },
-                    "empresa": {
-                        "type": "string"
-                    },
-                    "nome_cliente": {
-                        "type": "string"
-                    },
-                    "valor_entrega": {
-                        "type": "number"
-                    }
-                },
-                "required": [
-                    "cartao",
-                    "cnpj_pbm",
-                    "codigo_entrega",
-                    "cpf",
-                    "empresa",
-                    "nome_cliente",
-                    "valor_entrega"
-                ]
-            },
-            "ItemForma": {
-                "type": "object",
-                "properties": {
-                    "modalidade": {
-                        "type": "string"
-                    },
-                    "subtipo": {
-                        "type": "string"
-                    },
-                    "valor_pago": {
-                        "type": "number"
-                    }
-                },
-                "required": [
-                    "modalidade",
-                    "subtipo",
-                    "valor_pago"
-                ]
-            },
-            "FormasPagamento": {
-                "type": "object",
-                "properties": {
-                    "item_forma": {
-                        "description": "Array de formas de formas de pagamento.",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/ItemForma"
-                        }
-                    }
-                },
-                "required": [
-                    "item_forma"
-                ]
-            },
-            "ItemProduto": {
-                "type": "object",
-                "properties": {
-                    "codigo_interno": {
-                        "type": "string"
-                    },
-                    "quantidade": {
-                        "type": "number"
-                    },
-                    "valor_total_bruto": {
-                        "type": "number"
-                    },
-                    "valor_total_liquido": {
-                        "type": "number"
-                    }
-                },
-                "required": [
-                    "codigo_interno",
-                    "quantidade",
-                    "valor_total_bruto",
-                    "valor_total_liquido"
-                ]
-            },
-            "Produtos": {
-                "type": "object",
-                "properties": {
-                    "item_produto": {
-                        "description": "Array de formas de produtos.",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/ItemProduto"
-                        }
-                    }
-                },
-                "required": [
-                    "item_produto"
-                ]
-            },
-            "EntregaXml": {
-                "type": "object",
-                "properties": {
-                    "cupom_fiscal": {
-                        "type": "string"
-                    },
-                    "dados_entrega": {
-                        "$ref": "#/components/schemas/DadosEntrega"
-                    },
-                    "formas_pagamento": {
-                        "$ref": "#/components/schemas/FormasPagamento"
-                    },
-                    "produtos": {
-                        "$ref": "#/components/schemas/Produtos"
-                    }
-                },
-                "required": [
-                    "cupom_fiscal",
-                    "dados_entrega",
-                    "formas_pagamento",
-                    "produtos"
-                ]
-            },
-            "Order": {
-                "type": "object",
-                "properties": {
-                    "entrega_xml": {
-                        "$ref": "#/components/schemas/EntregaXml"
-                    }
-                },
-                "required": [
-                    "entrega_xml"
-                ]
-            },
-            "CriarPedidoFidelizaDto": {
-                "type": "object",
-                "properties": {
-                    "cnpj_filial": {
-                        "type": "string"
-                    },
-                    "codigo_filial": {
-                        "type": "number",
-                        "example": 2015
-                    },
-                    "cupom": {
-                        "$ref": "#/components/schemas/Order"
-                    }
-                },
-                "required": [
-                    "cnpj_filial",
-                    "codigo_filial",
-                    "cupom"
-                ]
-            },
-            "Produto": {
-                "type": "object",
-                "properties": {
-                    "codigo_produto": {
-                        "type": "number",
-                        "example": 7898148291267
-                    },
-                    "codigo_interno": {
-                        "type": "number",
-                        "example": 521434
-                    },
-                    "descricao": {
-                        "type": "string",
-                        "example": "METFORMINA 500MG 30 COMPRIMIDOS REVESTID"
-                    },
-                    "numero_dias": {
-                        "type": "number",
-                        "example": 0
-                    },
-                    "pvendaemb": {
-                        "type": "number",
-                        "example": 3.9
-                    },
-                    "qtd_autorizada": {
-                        "type": "number",
-                        "example": 120
-                    },
-                    "qu_diaria": {
-                        "type": "number",
-                        "example": 4
-                    },
-                    "qu_embalagem": {
-                        "type": "number",
-                        "example": 30
-                    },
-                    "status": {
-                        "type": "string",
-                        "example": "00SM"
-                    },
-                    "total_cliente": {
-                        "type": "number",
-                        "example": 0
-                    },
-                    "total_ms": {
-                        "type": "number",
-                        "example": 15.6
-                    },
-                    "un": {
-                        "type": "string",
-                        "example": "UN"
-                    }
-                },
-                "required": [
-                    "codigo_produto",
-                    "codigo_interno",
-                    "descricao",
-                    "numero_dias",
-                    "pvendaemb",
-                    "qtd_autorizada",
-                    "qu_diaria",
-                    "qu_embalagem",
-                    "status",
-                    "total_cliente",
-                    "total_ms",
-                    "un"
-                ]
-            },
-            "AutorizacaoPopular": {
-                "type": "object",
-                "properties": {
-                    "cpf": {
-                        "type": "string",
-                        "example": "00774966718"
-                    },
-                    "crm": {
-                        "type": "string",
-                        "example": "12345"
-                    },
-                    "data_receita": {
-                        "type": "string",
-                        "example": "44925"
-                    },
-                    "digitalizou": {
-                        "type": "number",
-                        "example": 1
-                    },
-                    "endereco": {
-                        "type": "string",
-                        "example": "R ERNESTINA VIEIRA SIMOES, 168 CASA, OLARIA, GUARAPARI, ES"
-                    },
-                    "nItems": {
-                        "type": "number",
-                        "example": 1
-                    },
-                    "nome": {
-                        "type": "string",
-                        "example": "MARIA HELENA PENA DA FONSECA"
-                    },
-                    "nomeCrm": {
-                        "type": "string",
-                        "example": "THOMAZ RINCO"
-                    },
-                    "numero_autorizacao": {
-                        "type": "number",
-                        "example": 998469399872086
-                    },
-                    "produtos": {
-                        "description": "Array de produtos.",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Produto"
-                        }
-                    },
-                    "qtd_medidcamentos": {
-                        "type": "number",
-                        "example": 1
-                    },
-                    "tempo_autorizacao": {
-                        "type": "string",
-                        "example": "44925,4280371065"
-                    },
-                    "uf_crm": {
-                        "type": "string",
-                        "example": "SP"
-                    },
-                    "vendedor": {
-                        "type": "string",
-                        "example": "30770356850"
-                    }
-                },
-                "required": [
-                    "cpf",
-                    "crm",
-                    "data_receita",
-                    "digitalizou",
-                    "endereco",
-                    "nItems",
-                    "nome",
-                    "nomeCrm",
-                    "numero_autorizacao",
-                    "produtos",
-                    "qtd_medidcamentos",
-                    "tempo_autorizacao",
-                    "uf_crm",
-                    "vendedor"
-                ]
-            },
-            "CriarPedidoPopularDto": {
-                "type": "object",
-                "properties": {
-                    "cnpj_filial": {
-                        "type": "string",
-                        "example": "61412110052201"
-                    },
-                    "codigo_filial": {
-                        "type": "number",
-                        "example": 2015
-                    },
-                    "autorizacao": {
-                        "$ref": "#/components/schemas/AutorizacaoPopular"
-                    }
-                },
-                "required": [
-                    "cnpj_filial",
-                    "codigo_filial",
-                    "autorizacao"
-                ]
-            }
+    "CriarPedidoFidelizaDto": {
+      "properties": {
+        "cnpj_filial": {
+          "type": "string"
+        },
+        "codigo_filial": {
+          "example": 2015,
+          "type": "number"
+        },
+        "cupom": {
+          "$ref": "#/definitions/Order"
         }
+      },
+      "required": [
+        "cnpj_filial",
+        "codigo_filial",
+        "cupom"
+      ],
+      "type": "object"
+    },
+    "CriarPedidoPopularDto": {
+      "properties": {
+        "autorizacao": {
+          "$ref": "#/definitions/AutorizacaoPopular"
+        },
+        "cnpj_filial": {
+          "example": "61412110052201",
+          "type": "string"
+        },
+        "codigo_filial": {
+          "example": 2015,
+          "type": "number"
+        }
+      },
+      "required": [
+        "cnpj_filial",
+        "codigo_filial",
+        "autorizacao"
+      ],
+      "type": "object"
+    },
+    "DadosEntrega": {
+      "properties": {
+        "cartao": {
+          "type": "string"
+        },
+        "cnpj_pbm": {
+          "type": "string"
+        },
+        "codigo_entrega": {
+          "type": "string"
+        },
+        "cpf": {
+          "type": "string"
+        },
+        "empresa": {
+          "type": "string"
+        },
+        "nome_cliente": {
+          "type": "string"
+        },
+        "valor_entrega": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "cartao",
+        "cnpj_pbm",
+        "codigo_entrega",
+        "cpf",
+        "empresa",
+        "nome_cliente",
+        "valor_entrega"
+      ],
+      "type": "object"
+    },
+    "EntregaXml": {
+      "properties": {
+        "cupom_fiscal": {
+          "type": "string"
+        },
+        "dados_entrega": {
+          "$ref": "#/definitions/DadosEntrega"
+        },
+        "formas_pagamento": {
+          "$ref": "#/definitions/FormasPagamento"
+        },
+        "produtos": {
+          "$ref": "#/definitions/Produtos"
+        }
+      },
+      "required": [
+        "cupom_fiscal",
+        "dados_entrega",
+        "formas_pagamento",
+        "produtos"
+      ],
+      "type": "object"
+    },
+    "FormasPagamento": {
+      "properties": {
+        "item_forma": {
+          "description": "Array de formas de formas de pagamento.",
+          "items": {
+            "$ref": "#/definitions/ItemForma"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "item_forma"
+      ],
+      "type": "object"
+    },
+    "ItemForma": {
+      "properties": {
+        "modalidade": {
+          "type": "string"
+        },
+        "subtipo": {
+          "type": "string"
+        },
+        "valor_pago": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "modalidade",
+        "subtipo",
+        "valor_pago"
+      ],
+      "type": "object"
+    },
+    "ItemProduto": {
+      "properties": {
+        "codigo_interno": {
+          "type": "string"
+        },
+        "quantidade": {
+          "type": "number"
+        },
+        "valor_total_bruto": {
+          "type": "number"
+        },
+        "valor_total_liquido": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "codigo_interno",
+        "quantidade",
+        "valor_total_bruto",
+        "valor_total_liquido"
+      ],
+      "type": "object"
+    },
+    "Order": {
+      "properties": {
+        "entrega_xml": {
+          "$ref": "#/definitions/EntregaXml"
+        }
+      },
+      "required": [
+        "entrega_xml"
+      ],
+      "type": "object"
+    },
+    "Produto": {
+      "properties": {
+        "codigo_interno": {
+          "example": 521434,
+          "type": "number"
+        },
+        "codigo_produto": {
+          "example": 7898148291267,
+          "type": "number"
+        },
+        "descricao": {
+          "example": "METFORMINA 500MG 30 COMPRIMIDOS REVESTID",
+          "type": "string"
+        },
+        "numero_dias": {
+          "example": 0,
+          "type": "number"
+        },
+        "pvendaemb": {
+          "example": 3.9,
+          "type": "number"
+        },
+        "qtd_autorizada": {
+          "example": 120,
+          "type": "number"
+        },
+        "qu_diaria": {
+          "example": 4,
+          "type": "number"
+        },
+        "qu_embalagem": {
+          "example": 30,
+          "type": "number"
+        },
+        "status": {
+          "example": "00SM",
+          "type": "string"
+        },
+        "total_cliente": {
+          "example": 0,
+          "type": "number"
+        },
+        "total_ms": {
+          "example": 15.6,
+          "type": "number"
+        },
+        "un": {
+          "example": "UN",
+          "type": "string"
+        }
+      },
+      "required": [
+        "codigo_produto",
+        "codigo_interno",
+        "descricao",
+        "numero_dias",
+        "pvendaemb",
+        "qtd_autorizada",
+        "qu_diaria",
+        "qu_embalagem",
+        "status",
+        "total_cliente",
+        "total_ms",
+        "un"
+      ],
+      "type": "object"
+    },
+    "Produtos": {
+      "properties": {
+        "item_produto": {
+          "description": "Array de formas de produtos.",
+          "items": {
+            "$ref": "#/definitions/ItemProduto"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "item_produto"
+      ],
+      "type": "object"
     }
+  },
+  "tags": [],
+  "x-components": {}
 }
